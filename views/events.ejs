@@ -1,0 +1,139 @@
+<%- include("partials/header", {title: "Studenttindex"}) %>
+<%- include("partials/navbar", {title:"Home"}) %>
+
+<head>
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            
+            
+            
+        }
+        .prod-item{
+            padding-left:10px;
+            background: #a0d2f2;
+        }
+        .prod-item p{
+            font-size: 14px;
+        }
+        .card-body {
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+           
+            padding-right:9em;
+        }
+    
+        .card-img, .card-img-top, .card-img-bottom {
+            /* flex-shrink: 0;*/
+            width: 21vw;
+            overflow: hidden;
+            height: 35vh;
+            padding-left: 1.3em;
+            padding-top: 2em;
+            padding-right: 2.9em;
+            border-radius: 40px;
+        }
+        .list-group-item{
+            padding-right:15em;
+        }
+    
+        .card {
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+        box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+        margin: 14px;
+        }
+        .card#side-nav{
+            padding-top: 1.5em;
+            margin-top:3.3em;
+            position: fixed;
+        }
+    
+        .card#aside{
+            margin-top:1.5em;
+        }
+    
+        .card #card-side{
+            
+            border-radius: 40px;
+            width:20vw;
+            margin-bottom:2.5rem; 
+            transition:0.5s;
+            transform:scale(0.89, 0.89) perspective(800px) rotateY(0deg);
+            
+            
+        }
+    
+        .card#card-side:hover {
+            box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), -5px -5px 30px 15px rgba(0,0,0,0.22);
+            transform: scale(0.97, 0.97) perspective(700px) rotateY(17deg);
+            
+    }
+    .icon {
+        color : #f4b841;
+        padding-left:10px;
+        font-size:40px;
+        color: #fdb801;
+        font-size: 28px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        width: 70px;
+    }
+
+    .iconset {
+        background: #fff none repeat scroll 0 0;
+        float: left;
+        width: 100%;
+        padding-left: 10px;
+    }
+    </style>
+</head>
+<div class="main-content">
+    <div class="container">
+        <div class="entry-header">
+            <div class="entry-title">
+                <p><a href ="/addevent" >Add event/note</a></p>
+                <h2>Your events/notes</h2>
+            </div><!-- entry-title -->
+        </div><!-- entry-header -->
+    </div>
+</div>
+
+<div class="userevent">
+    <% if(eventfound.length==0){ %>
+        <p>You have no events</p>
+    <% }else{ %>
+        <p>Total events: <%= eventfound.length %></p>
+            <div class="card-body">
+                <div class="row">           
+                    
+        <% eventfound.forEach(event => { %>       
+                     <div class="col-sm-4" >                         
+                        <div class="card" id="card-side">                             
+                             <div class="iconset">
+                                <span class="icon"><i class="fa fa-calendar" aria-hidden="true" style="color: #fdb801;"></i><h3 style="color:rgb(36, 103, 106)"><%= event.eventname %></h3></span>
+                            </div>
+                                                         
+                             <div class="card-body prod-item">
+                                 
+                                 <p><small>Event date :  <%= event.createdAt %></small></p>
+                                 <p class="truncate"><%= event.eventdesc %></p>
+                                <button class="btn btn-danger btn-md view_prod" type="button"><a style="color:black;" href="/deleteevent?eventid=<%=event._id %>">Delete event</a></button>
+                             </div>
+                         </div>
+                     </div>
+                     <% }); %> 
+                    </div>
+            </div>
+        
+    <% } %>
+</div>
+
+<%- include("partials/footer") %>

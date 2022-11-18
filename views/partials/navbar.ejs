@@ -1,0 +1,96 @@
+<% if(failure) { %>
+    <div class="alert alert-danger" role="alert">
+        <%= msg %>
+    </div>
+<% } %>
+<head>
+    <style>
+        #google_translate_element select{
+            background:#f6edfd;
+            color:#111111;
+            border: 1px solid #0004;
+            border-radius:10px;
+            padding:6px 8px;
+            }
+            
+            /*google translate link | logo */
+              .goog-logo-link{
+              display:none!important;
+              }
+            .goog-te-gadget{
+            color:transparent!important;
+            }
+            
+            /* google translate banner-frame */
+            
+            .goog-te-banner-frame{
+            display:none !important;
+            }
+            
+            #goog-gt-tt, .goog-te-balloon-frame{display: none !important;}
+           .goog-text-highlight { background: none !important; box-shadow: none !important;}
+            
+    </style>
+</head>
+<body class = "about-us">
+    <header class="site-header">
+        <div class="header-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-10 col-lg-3">
+                        <h1 class="site-branding flex">
+                            <a href="/studentindex">Studentry</a>
+                        </h1>
+                    </div>
+
+                    <div class="col-2 col-lg-9">
+                        <nav class="site-navigation">
+
+                            <ul>
+                                <li><a href="/studentindex">Home</a></li>
+                                <li><a href="/chat">Friends</a></li>
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/usercounselling">Counselling</a></li>
+                                <li><a href="/studentprofile">Profile</a></li>
+                                <!-- <form action="/logout?_method=DELETE" method="post">
+                                    <button type="submit"><li>Logout</li></button>
+                                </form> -->
+                                <li><a href="/logout">Logout</a></li>
+                                <li>
+                                    <div id='google_translate_element' ></div>
+                                    <script>
+                                            function googleTranslateElementInit() {
+                                             new google.translate.TranslateElement({
+                                            pageLanguage: 'en',
+                                             autoDisplay: 'true',
+                                            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+                                            }, 'google_translate_element');
+                                            }
+                                    </script>
+                                    <script src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'></script>
+                                </li>
+                                
+                            </ul><!-- flex -->
+                        </nav><!-- .site-navigation -->
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- container-fluid -->
+        </div><!-- header-bar -->
+    </header><!-- .site-header -->
+
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="entry-header">
+                        <h2 class="entry-title"></h2>
+
+                        <ul class="breadcrumbs flex align-items-center">
+                            <li><a href="#"><%= registernumber %></a></li>
+                            <li><%= title %></li>
+                        </ul><!-- .breadcrumbs -->
+                    </div><!-- .entry-header -->
+                </div><!-- .col-12 -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header -->

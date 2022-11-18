@@ -1,0 +1,184 @@
+<%- include("partials/header", {title: "Counselling"}) %>
+<%- include("partials/navbar", {title:"Home"}) %>
+
+<head>
+    <style>
+        .container2 {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+          }
+          
+          /* Darker chat container */
+          .darker {
+            border-color: rgb(204, 204, 204);
+            background-color: rgba(221, 221, 221, 0.83);
+          }
+          
+          /* Clear floats */
+          .container2::after {
+            content: "";
+            clear: both;
+            display: table;
+          }
+          
+          /* Style images */
+          .container2 img {
+            float: left;
+            max-width: 60px;
+            width: 100%;
+            margin-right: 20px;
+            border-radius: 50%;
+          }
+          
+          /* Style the right image */
+          .container2 img.right {
+            float: right;
+            margin-left: 20px;
+            margin-right:0;
+          }
+          
+          /* Style time text */
+          .time-right {
+            float: right;
+            color: #aaa;
+          }
+          
+          /* Style time text */
+          .time-left {
+            float: left;
+            color: #999;
+          }
+          .card-columns{
+            display: flex;
+          }
+    </style>
+</head>
+<div class="user-counselling">
+    <div class="header">
+        <div class="entry-title">
+            <h1>Your counselling section at glance</h1>
+        </div>
+        <div class="appointment">
+            <p>Your appointment details</p>
+            <div class="card-columns" style="background-color:rgb(232, 221, 221); padding: 10px;">
+            <% if(appointment.length==0){ %>
+                <div class="appointment-details">
+                <p>There are not any appointments</p>
+                </div>
+            <% } else{ %>
+                <% appointment.forEach(appoint=>{ %>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="icon"><i class="fa fa-cog fa-lg" style="color: #fdb801; margin:10px;"></i></span><%= appoint.beneficiary %></h5>
+                            <p class="card-text">Type: <%=appoint.venue_type %></p>
+                            <p class="card-text">Venue: <%=appoint.venue %></p>
+                            <p class="card-text">Instruction: <%= appoint.instruction %></p>
+                            <!-- <a href="/" class="btn btn-primary"  >counsult</a> -->
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"><p class="last-updated">Date: <%= appoint.date.toDateString() %></p>
+                              <p>Time :  <%= appoint.time %></p></small>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+
+<div class="container mt-5">
+    <h2>Counsellor Information</h2>
+    <div class="row d-flex justify-content-left">
+        <div class="col-md-7">
+            
+            <div class="card p-3 py-4">
+                <div class="text-center">
+                    <img src="<%= counsel.img %>" width="100" class="rounded-circle">
+                </div>
+                <div class="text-center mt-3">
+                    <span class="bg-secondary p-1 px-4 rounded text-white">Counsellor</span>
+                    <h5 class="mt-2 mb-0"><%= counsel.firstname %> </h5>
+                    <span><%= counsel.designation %></span>
+                    
+                    <div class="px-4 mt-1">
+                        <p class="fonts"><%= counsel.summary %></p>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-primary px-4 ms-3"><a href="mailto:<%= counsel.email %>?subject=Request for an appointment!" style="text-decoration: none; color:#f1f1f1;">Request an appointment</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="counsellor-message-section">
+    <h2>Messages with Proctor</h2>
+    <u><p>Messages</p></u>
+    <% if(msgwithcounsel.length==0) { %>
+        <p>There arenot any messages</p>
+    <% }else{ %>
+        <div class="header">
+            <div class="entry-header">
+                <div class="entry-title"> 
+                    <% msgwithcounsel.forEach(msg=>{ %>
+                        <!-- <div class="counsellor-comment">
+                            <% if(msg.from === "counsellor") { %>
+                                <div class="counsellor-description" style="background-color: aqua; float: left;">
+                                <div class="counsellor-description" style="background-color: rgb(191, 241, 241); margin:5px; padding:5px;float: right;">
+                                    <%= msg.context %> --
+                                    <%= msg.By %> -- at
+                                    <%= msg.createdAt%>
+                                </div>
+                            <% } else { %>
+                                <div class="counsellor-description" style="background-color: rgb(28, 64, 154); float: right; color:#fff;">
+                                    <%= msg.context %> --
+                                    <%= msg.By %> -- at
+                                    <%= msg.createdAt.toLocaleDateString() %>
+                                </div>
+                            <% } %>
+                        </div>    -->
+                        <% if(msg.from === "counsellor") { %>
+                        <div class="container2">
+                            <img src="/uploads/professor.png" alt="Avatar">
+                            <h4><%= msg.By %></h4>
+                            <p><%= msg.context %></p>
+                            <span class="time-right"><%= msg.createdAt.toLocaleDateString() %></span>
+                          </div>
+                          <% } else { %>
+                          <div class="container2 darker">
+                            <img src="/uploads/student.jpg" alt="Avatar" class="right">
+                            <h4><%= msg.By %></h4>
+                            <p><%= msg.context %></p>
+                            <span class="time-right"><%= msg.createdAt.toLocaleDateString() %></span>
+                          </div>
+                          <% } %>
+               
+                          
+                          
+                    <% }); %>           
+                </div><!-- lineup-artists-description-container -->
+            </div><!-- lineup-artists-description -->
+        </div><!-- lineup-artists-wrap -->
+    <% } %>
+</div>
+
+
+
+<form action="/usercounselling" class="forum-counselling" method="post">
+    <div class="form-group">
+        <textarea class="form-control" name="forumcomm" id="forumcomm" rows="5" autocomplete="off"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add the message</button>
+</form>
+
+
+
+<%- include("partials/footer") %>
