@@ -9,10 +9,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/app.js "
+    "dev": "node src/app.js -e js,ejs,css "
   },
   "keywords": [],
-  "author": "Resham Sapkota",
+  "author": "Anish Shrestha",
   "license": "ISC",
   "dependencies": {
     "@coreui/icons": "^2.1.0",
